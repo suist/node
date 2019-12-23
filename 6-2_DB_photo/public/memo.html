@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Memo Page</title>
+
+     <!-- use 'jquery' -->
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+
+  <!-- use 'moment' -->
+  <script src="moment.min.js"></script>
+<script>
+
+    // when documents are readied
+$(function() {
+    var curDate = moment().format('YYYY-MM-DD HH:mm');
+    $('#createDate').attr('value',curDate);
+
+    $("#photoInput").change(function(){
+        readURL(this);
+        })
+});
+
+ // preview
+ function readURL(input){
+     if (input.files && input.files[0]){
+         var reader = new FileReader();
+
+         reader.onload = function (e){
+             $('#photoOutput').attr('src', e.target.result);
+         }
+
+         reader.readAsDataURL(input.files[0]);
+
+     }
+ }
+
+</script>
+
+
+
+</head>
+<body>
+
+    <h3>My memo</h3>
+    <br>
+    <form method="post" enctype="multipart/form-data" action="/process/save">
+        <table>
+            <tr>
+                <td><label>author</label></td>
+                <td><input type="text" name="author" /></td>
+            </tr>
+            <tr>
+            <tr>
+                <td><label>create date</label></td>
+                <td><input type="text" name="createDate" id="createDate"/></td>
+            </tr>
+            <tr>
+            <tr>
+                <td><label>contents</label></td>
+                <td><textarea name="contents" style="width: 12em;height:10em;"></textarea></td>
+            </tr>
+            <tr>
+                <td><label>picture</label></td>
+                <td><input type="file" name="photo" id="photoInput" /><br>
+                    <img src="" id="photoOutput" width="200px" /></td>
+            </tr>
+           
+        </table>
+        <input type="submit" value ="save" name=""/>
+        <input type="button" value="close"/>
+    </form>
+
+
+
+
+    
+    
+    
+</body>
+</html>

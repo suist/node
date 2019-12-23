@@ -33,9 +33,10 @@ var pool = mysql.createPool({
     connectionLimit : 10,
     host : 'localhost',
     user :'root',
-    password : 'admin',
+    password : 'sunny',
     database :'test',
     debug : false
+
 });
 
 
@@ -140,7 +141,7 @@ var insertMemo = function(author, contents, createDate, callback){
         var data = {author:author, contents:contents, createDate:createDate};
 
         //SQL
-        var exec = conn.query('inser into memo set ? ', data, function(err,result){
+        var exec = conn.query('insert into memo set ? ', data, function(err,result){
             conn.release();
             console.log(' exe SQL:' + exec.sql);
 
