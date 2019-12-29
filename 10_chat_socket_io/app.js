@@ -61,14 +61,21 @@ userPassport(app, passport);
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log(" 서버가 시작됨 포트 :"+ app.get('port'));
 
-  database.init(app, config);
+  // database.init(app, config);
+  route_loader.init(app);
 })
 
 var io= socketio.listen(server);
 console.log(" socket.io 를 받아들일 준비완료")
 
+io.sockets.on('connect',function(socket){
+  console.log('connection info : ', socket.request.connection._peername);
 
 
+socket.remoteAddress = socket.requset.connection._peername.address;
+socket.remotePort = socket.request.connection._peername.port;
+
+})
 
 
 

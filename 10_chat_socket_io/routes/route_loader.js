@@ -12,7 +12,7 @@ function initRoutes(app) {
   var infoLen = config.route_info.length;
   console.log('설정에 정의된 라우팅 모듈의 수 : %d', infoLen);
 
-  app.get('/capkum', function(req, res, next) {
+  app.get('/public/html/', function(req, res, next) {
     console.log('첫 번째 미들웨어에서 요청 처리함 ');
     res.writeHead('200', {
       'Content-Type': 'text/html;charset=utf8'
